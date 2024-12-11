@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 class Account {
@@ -56,11 +55,13 @@ class Account {
 
 public class Bank {
     Account[] arr = new Account[10];
-
-    int choice = 0;
-    double balance = 0;
-
+    int [] acNos=new int[10];
+   
     void serveCustomer() {
+        int choice = 0;
+        do{
+        
+        double balance = 0;
         System.out.println("Bank Management System");
         System.out.println("Prees 1 to open account in this bank");
         System.out.println("Prees 2 to close account from this bank");
@@ -75,13 +76,13 @@ public class Bank {
         if (choice == 1) {
             openAccount();
         }
-        //  else if (choice == 2) {
-        //     closeAccount();
-        // } else if (choice == 3) {
-        //     addCash();
-        // } else if (choice == 4) {
-        //     withdrawcash();
-        // } 
+         else if (choice == 2) {
+            closeAccount();
+        } else if (choice == 3) {
+            addCash();
+        } else if (choice == 4) {
+            withdrawcash();
+        } 
         else if (choice == 5) {
             displayAccount();
         } else if (choice == 6) {
@@ -89,6 +90,8 @@ public class Bank {
         } else {
             System.out.println("Invalid input! Please enter 1 to 5.");
         }
+        }while(choice!=6);
+        
     }
 
     // open account
@@ -100,6 +103,13 @@ public class Bank {
         System.out.print("Enter Account Number: ");
         double accountNumber = sc.nextDouble();
 
+        for(int i=0;i<10;i++)
+                {
+                    if(acNos[i] == accountNumber)
+                        {
+                            System.out.println("choose a new account number...");
+                        }
+                }
         System.out.print("Enter Initial Balance: ");
         double balance = sc.nextDouble();
 
@@ -114,55 +124,55 @@ public class Bank {
         System.out.println("Account created successfully.");
     }
 
-    // Delete Account
-    // void closeAccount() {
-    //     Scanner sc = new Scanner(System.in);
-    //     System.out.print("Enter Account Number to delete: ");
-    //     double accountNumber = sc.nextDouble();
+    //Delete Account
+    void closeAccount() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Account Number to delete: ");
+        double accountNumber = sc.nextDouble();
     
-    //     if (accountNumber == arr[0]) {
-    //         arr[0] = null;
-    //         System.out.println("Account deleted successfully.");
-    //     }
+        if (accountNumber == arr[0]) {
+            arr[0] = null;
+            System.out.println("Account deleted successfully.");
+        }
 
-    //     else {
-    //         System.out.println("Account not found.");
-    //     }
-    // }
+        else {
+            System.out.println("Account not found.");
+        }
+    }
 
-    // add cash
-    // void addCash() {
-    //     System.out.print("Enter Account Number: ");
-    //     Scanner sc = new Scanner(System.in);
-    //     String accountNumber = sc.nextLine();
-    //
-    //     BankAccount account = findAccount(accountNumber);
-    //     if (account != null) {
-    //         System.out.print("Enter Amount to Deposit: ");
-    //         double amount = sc.nextDouble();
-    //         sc.nextLine(); // Consume the newline
-    //         account.deposit(amount);
-    //     } else {
-    //         System.out.println("Account not found.");
-    //     }
-    // }
+    //add cash
+    void addCash() {
+        System.out.print("Enter Account Number: ");
+        Scanner sc = new Scanner(System.in);
+        String accountNumber = sc.nextLine();
+    
+        BankAccount account = findAccount(accountNumber);
+        if (account != null) {
+            System.out.print("Enter Amount to Deposit: ");
+            double amount = sc.nextDouble();
+            sc.nextLine(); // Consume the newline
+            account.deposit(amount);
+        } else {
+            System.out.println("Account not found.");
+        }
+    }
 
-    // withdraw Cash
-    // void withdrawcash() {
-    //     Scanner sc = new Scanner(System.in);
-    //     System.out.print("Enter Account Number: ");
-    //     String accountNumber = sc.nextLine();
-    //
-    //     BankAccount account = findAccount(accountNumber);
-    //     if (account != null) {
-    //         System.out.print("Enter Amount to Withdraw: ");
-    //         double amount = sc.nextDouble();
-    //         sc.nextLine(); // Consume the newline
-    //         account.withdraw(amount);
-    //     } else {
-    //         System.out.println("Account not found.");
-    //     }
-    // }
+    //withdraw Cash
+    void withdrawcash() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Account Number: ");
+        String accountNumber = sc.nextLine();
+    
+        BankAccount account = findAccount(accountNumber);
+        if (account != null) {
+            System.out.print("Enter Amount to Withdraw: ");
+            double amount = sc.nextDouble();
+            sc.nextLine(); // Consume the newline
+            account.withdraw(amount);
+        } else {
+            System.out.println("Account not found.");
+        }
+    }
 
    // Display Account
     void displayAccount() {
